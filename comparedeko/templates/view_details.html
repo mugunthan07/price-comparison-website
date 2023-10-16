@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='templates/style.css') }}">
+    <title>{{list.model}}</title>
+    <style>
+        .flex{
+            display:flex;
+            padding:30px;
+        }
+        .con{
+          border:solid 5px black;
+          padding:5px;
+          position:relative;}
+
+    </style>
+</head>
+<body>
+<div class="container flex" style="display:flex;">
+    <img src="{{list.images}}" width ="500px" height="500px">
+
+    <div class="container" style="margin:20px;">
+        <br>
+        <div class="con">
+        <h1 style="color:teal; border-bottom:solid 3px black;">Specification</h1>
+        <h1>{{list.model}}</h1>
+        <p>Color : <strong>{{list.color}}</strong></p>
+        <p>RAM / ROM : <strong>{{list.storage}}</strong></p>
+        <p>Battery Capacity: <strong>{{list.battery}}</strong></p>
+        <p>Customer Reviews: <strong>{{list.review}}</strong></p></div>
+        <div class="container" >
+            <div class="row flex" style="display: flex;">
+                <div class="col">
+                    <img src="{{ url_for('static', filename='flipkart.png') }}" width="150px" height="100px" style="align:center">
+                    <h2 style="margin-left:20px;">Rs.{{list.flipkart_price}}</h2>
+                    <button style="margin-left:25px; height:50px; width:70px; color:teal"><a href="{{list.flipkart_url}}" style="text-decoration:none; color:teal;">Buy Now</a></button>
+                </div>
+                <div class="col">
+                    <img src="{{ url_for('static', filename='amazon.png') }}" width="150px" height="100px" style="align:center; margin-left:70px;">
+                    <h2 style="margin-left:70px;">Rs.{{list.amazon_price}}</h2>
+                    <button style="margin-left:70px; height:50px; width:70px;"><a href="{{list.amazon_url}}" style="text-decoration:none; color:teal;">Buy Now</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .card-container{
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #515151;
+        }
+        .card{
+            width: 250px;
+            margin: 5px;
+            box-sizing: content-box;
+            padding: 20px;
+            background-color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% if data == [] %}
+        <center>No Data Found</center>
+    {% else %}
+    <div class="card-container">
+        {% for list in data %}
+        <div class="card" >
+            <a href="/view_details/{{ list.brand }}/{{ list.itemId }}">
+            <img src="{{ list.images }}" width="250px">
+                {% if list.lowest == "amazon" %}
+                    <h3>{{list.amazon_price }}</h3>
+                    <img src="{{ url_for('static', filename='amazon.png') }}" width="50px" height="20px"/>
+                {%else%}
+                    <h3>{{ list.flipkart_price }}</h3>
+                    <img src="{{ url_for('static', filename='flipkart.png') }}" width="50px" height="20px"/>
+                {%endif%}
+            <p>{{ list.model }}</p>
+            <span>{{list.color}}</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+</body>
+</html>

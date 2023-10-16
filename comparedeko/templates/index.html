@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="searchPriceApp">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link 
+     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"  
+     rel="stylesheet"  />
+     <link  
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css"  
+      rel="stylesheet" />
+
+    <style>
+         .hide {
+        display: none !important
+        } *,
+        :after,
+        :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        body,
+        html {
+            font-family: -apple-system, Arial, sans-serif;
+            font-size: 14px;
+            margin: 0 auto;
+            color: #454545;
+            background: #fff;
+            padding: 0;
+            height: 100%;
+            min-height: 100%;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        a,
+        a:focus,
+        a:hover {
+            color: #de0000;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        a:focus,
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 0;
+            text-decoration: none
+        }
+
+        img {
+            border: none;
+            font-size: 6px
+        }
+
+        li,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .intro-wrapper{
+        background-color: var(--secondaryColor);
+        border: 1px solid var(--borderColor);
+        border-radius:5px 5px 0px 0px;
+
+        -webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+         -moz-box-shadow: -1px 1px 3px -1x rgba(0,0,0,0.75);
+          box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+
+          display: grid;
+          grid-template-column: 1fr 1fr;
+          grid-template-areas:
+               'nav-wrapper nav-wrapper'
+               'left-column right-column'
+             ;
+
+    }
+
+
+
+
+
+
+
+
+    .nav-wrapper{
+        grid-area:nav-wrapper;
+        border-radius: 0px 0px 0px 0px;
+        border-bottom: 1px solid beige;
+        display:flex;
+        justify-content:space-between;
+        align-items: center;
+        background-color: blueviolet;
+    }
+
+    #navigation a{
+        color: lightgray;
+    }
+
+
+
+     #navigation{
+        margin: 0;
+        padding: 10px;
+     }
+
+
+    #navigation li{
+        display: inline-block;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+        .clear {
+            clear: both
+        }
+
+        .clearfix:after,
+        .clearfix:before {
+            display: table;
+            content: " "
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+
+        .left {
+            text-align: left
+        }
+
+        .center {
+            text-align: center
+        }
+
+        .right {
+            text-align: right
+        }
+
+        .fl {
+            float: left
+        }
+
+        .fr {
+            float: right
+        }
+
+        .btn {
+            background-color: #da0000;
+            border: none;
+            border-radius: 2px;
+            color: #fff;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            height: 30px;
+            line-height: 24px;
+            outline: 0;
+            padding: 0 20px;
+            position: relative;
+            text-align: center;
+            font-weight: 400;
+            display: inline-flex;
+            display: -webkit-inline-flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+
+            -webkit-appearance: none
+        }
+        .bar{
+  margin:0 auto;
+  width:575px;
+  border-radius:30px;
+  border:1px solid #dcdcdc;
+}
+.bar:hover{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+.bar:focus-within{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline:none;
+}
+.searchbar{
+  height:45px;
+  border:none;
+  width:500px;
+  font-size:16px;
+  outline: none;
+
+}
+        .voice{
+  height:20px;
+  position:relative;
+  top:5px;
+  left:10px;
+  }
+            /*products details*/
+
+
+        ._chd {
+            color: var(--color);
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: var(--lshd);
+            padding: 5px var(--bpd);
+            margin: 0
+        }
+
+        ._chd a {
+            display: inline-block;
+            color: var(--color)
+        }
+
+        ._chd .arrow-r {
+            position: relative
+        }
+
+        ._chd .arrow-r:after {
+            top: -1px;
+            right: 0;
+            border-color: var(--color);
+            position: relative;
+            display: inline-block
+        }
+
+        ._ctl {
+            width: 100%;
+            margin: 0 0 30px;
+            padding: 0
+        }
+
+        ._ctl ._flx {
+            flex-wrap: wrap;
+            display: flex;
+        }
+
+        ._ctl {
+            margin-top: 10px
+        }
+
+        ._ctlcb {
+            width: 25%;
+            padding: 0;
+            margin: 0 0 -1px 0;
+            position: relative;
+            background: #fff;
+            border: 1px solid #e2e2e2;
+            border-left: none;
+            display: flex;
+        }
+
+        ._ctlcb:nth-child(4n) {
+            border-right: none
+        }
+
+        ._ppbr ._ctlcb {
+            width: 33.33%
+        }
+
+        ._ppbr ._ctlcb:nth-child(4n) {
+            border-right: 1px solid #e2e2e2
+        }
+
+        ._ppbr ._ctlcb:nth-child(3n) {
+            border-right: none
+        }
+
+        ._ctlcb .thumb {
+            width: 100%;
+            height: 60px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        ._ctlcb .thumb i {
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            display: block;
+            background-size: 400px auto
+        }
+
+        ._ctlcb .thumb img {
+            max-width: 100%;
+            max-height: 50px;
+            margin: auto;
+            display: block
+        }
+
+        ._ctlcn {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            margin: 0 0 8px;
+            padding: 0 5px;
+            color: var(--color);
+            display: block;
+            text-align: center;
+            letter-spacing: .2px
+        }
+
+        ._ctlcn._lc {
+            -webkit-line-clamp: 2;
+            max-height: 34px
+        }
+
+        ._multi ._ctlcb .thumb {
+            height: 100px
+        }
+
+        ._multi ._ctlcb .thumb img {
+            max-height: 90px
+        }
+
+        ._plnk {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.3em;
+            width: 100%;
+            max-width: 675px;
+            text-align: center;
+            position: relative;
+            top: -40px;
+            padding: 0 5px;
+            display: block
+        }
+
+        ._plnk>span {
+            display: inline-block;
+            margin-right: 5px
+        }
+
+        ._plnk a {
+            color: var(--rcolor);
+            display: inline-block;
+            margin: 0 0 5px
+        }
+
+        @media (min-width:1025px) {
+            ._chd {
+                font-size: 22px;
+                font-weight: var(--pfw);
+                line-height: 1.4;
+                padding: 5px 0;
+                margin: 0 0 5px
+            }
+            ._chd a:hover {
+                color: var(--rcolor)
+            }
+            ._chd .arrow-r {
+                padding-right: 25px
+            }
+            ._chd .arrow-r:after {
+                top: 10px;
+                right: 10px;
+                border-color: var(--color);
+                position: absolute
+            }
+            ._chd .arrow-r:hover:after {
+                border-color: var(--rcolor)
+            }
+            ._ctlwp {
+                padding-top: 3px;
+                background: #fff;
+                border-radius: var(--br3);
+                padding: 10px;
+                box-shadow: 0 0 4px 0 rgba(53, 53, 53, .18);
+                flex-wrap: wrap
+            }
+            ._ctl {
+                width: 100%;
+                margin: 10px 0 25px
+            }
+            ._ctlcb {
+                width: 15%;
+                padding: 0;
+                margin: 10px;
+                position: relative;
+                border: none
+            }
+            ._ppbr ._ctlcb {
+                width: 15%
+            }
+            ._ppbr ._ctlcb:nth-child(3n),
+            ._ppbr ._ctlcb:nth-child(4n) {
+                border-right: none
+            }
+            ._ctlcb .thumb {
+                width: 170px;
+                height: 80px;
+                border: 1px solid #eee;
+                margin: auto
+            }
+            ._ctlcb .thumb i {
+                background-size: 640px auto
+            }
+            ._ctlcb .thumb img {
+                max-width: 130px;
+                max-height: 41px
+            }
+            ._ctlcb:hover .thumb img {
+                max-width: 100%;
+                max-height: 78px
+            }
+            ._ctlcn {
+                font-size: 14px;
+                line-height: 1.4;
+                margin: 0 0 5px;
+                padding: 5px 5px 0;
+                transition: all .5s ease
+            }
+            ._ctlcn._lc {
+                max-height: 56px
+            }
+            ._ctlcb:hover ._ctlcn {
+                color: var(--rcolor)
+            }
+            ._multi ._ctlcb .thumb img {
+                max-height: 80px
+            }
+            ._multi ._ctlcb:hover .thumb img {
+                max-height: 98px
+            }
+            ._ct {
+                justify-content: center
+            }
+            ._ct ._ctlcb {
+                width: 137px
+            }
+            ._ct .thumb {
+                width: 100px
+            }
+            ._ct .thumb img {
+                max-width: 100%
+            }
+            ._plnk {
+                top: -80px;
+                padding: 0
+            }
+
+
+    </style>
+         
+
+
+
+</head>
+
+<body>
+         <div class="intro-wrapper">
+             <div class="nav-wrapper">
+                  <div class="dots-wrapper">
+                      <div id="dot-1" class="browser-dot"></div>
+                      <div id="dot-2" class="browser-dot"></div>
+                      <div id="dot-3" class="browser-dot"></div>
+                  </div>
+
+                  <ul id="navigation">
+                     <li><a href="/login">LOGIN</a></li>
+                     <li><a href="/register">REGISTER</a></li>
+                  </ul>
+             </div>
+
+    <div class="center" align="center">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <img  src=" {{ url_for('static', filename='logo.jpg') }}">
+   <div class="bar">
+      <input class="searchbar" type="text" title="Search" placeholder="Search the products">
+
+    </div>
+<div class="scan">  <title>Python Flask File Upload Example</title>
+<h2>Upload a photo to view the product</h2>
+
+{% if filename %}
+	<div>
+		<img src="{{ url_for('static', filename='/Images/'+filename) }}">
+	</div>
+{% endif %}
+<form method="post" action="/home" enctype="multipart/form-data">
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+</div>
+<div class="_ctl" >
+            <div class="_flx _wfltwp">
+                <h3 class="_chd">Popular Mobiles</h3>
+            </div>
+            <div class="_flx _ctlwp _ct">
+                <div class="_ctlcb">
+                    <a target="_self" href="/load_category/samsung" title="Water Purifiers Price List">
+
+                        <div class="thumb _flx"> <img class="" src="{{url_for('static', filename='mobiles/samsung.png')}}" alt="Apple product List" title="Water Purifiers Price List" /> </div>
+                        <div class="_ctlcn _lc" >Samsung</div>
+                    </a>
+                </div>
+                <div class="_ctlcb">
+                    <a target="_self" href="/load_category/apple" title="Apple products">
+                        <div class="thumb _flx"> <img class=""  src="{{url_for('static', filename='mobiles/apple-black-logo.png')}}" alt="apple products" title="apple product Price List"
+                            /> </div>
+                        <div class="_ctlcn _lc">Apple</div>
+                    </a>
+                </div>
+                <div class="_ctlcb">
+                    <a target="_self" href="/load_category/oneplus" title="Water Geysers Price List">
+                        <div class="thumb _flx"> <img class="" src="{{url_for('static', filename='mobiles/Oneplus.png')}}" alt="Water Geysers Price List" title="Water Geysers Price List" /> </div>
+                        <div
+                            class="_ctlcn _lc">Oneplus</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="/load_category/vivo" title="Irons Price List">
+                    <div class="thumb _flx"> <img class="" src="{{url_for('static', filename='mobiles/vivo.png')}}" alt="Huawei products" title="Irons Price List" /> </div>
+                    <div class="_ctlcn _lc">Vivo</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="/load_category/mi" title="Coffee makers Price List">
+                    <div class="thumb _flx"> <img class="" src="{{url_for('static', filename='mobiles/mi.png')}}" alt="Coffee makers Price List" title="Coffee makers Price List" /> </div>
+                    <div class="_ctlcn _lc">MI</div>
+                </a>
+            </div>
+           
+      
+            
+
+   <div class="_ctl" >
+            <div class="_flx _wfltwp">
+                <h3 class="_chd">Popular Categories</h3>
+            </div>
+            <div class="_flx _ctlwp _ct">
+                <div class="_ctlcb">
+                    <a target="_self" href="" title="Water Purifiers Price List">
+                        <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202009/Water-Purifiers-min_1599142687.png?downsize=50:*&output-quality=80" alt="Water Purifiers Price List" title="Water Purifiers Price List" /> </div>
+                        <div class="_ctlcn _lc">Water Purifiers</div>
+                    </a>
+                </div>
+                <div class="_ctlcb">
+                    <a target="_self" href="" title="Induction Cooktops Price List">
+                        <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202009/Induction-Cooktop-icon-50x50_1600351104.png?downsize=50:*&output-quality=80" alt="Induction Cooktops Price List" title="Induction Cooktops Price List"
+                            /> </div>
+                        <div class="_ctlcn _lc">Induction Cooktops</div>
+                    </a>
+                </div>
+                <div class="_ctlcb">
+                    <a target="_self" href="" title="Water Geysers Price List">
+                        <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/water-geysers-50x50_1589974997.png?downsize=50:*&output-quality=80" alt="Water Geysers Price List" title="Water Geysers Price List" /> </div>
+                        <div
+                            class="_ctlcn _lc">Water Geysers</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="" title="Irons Price List">
+                    <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/irons-50x50_1589974914.png?downsize=50:*&output-quality=80" alt="Irons Price List" title="Irons Price List" /> </div>
+                    <div class="_ctlcn _lc">Irons</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="" title="Coffee makers Price List">
+                    <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/coffee-makers-50x50_1589974879.png?downsize=50:*&output-quality=80" alt="Coffee makers Price List" title="Coffee makers Price List" /> </div>
+                    <div class="_ctlcn _lc">Coffee makers</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="" title="Fans Price List">
+                    <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/201902/fan_1550488223.png?downsize=50:*&output-quality=80" alt="Fans Price List" title="Fans Price List" /> </div>
+                    <div class="_ctlcn _lc">Fans</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="" title="Mixer Juicer Grinder Price List">
+                    <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/mixer-juicer-grinder-50x50_1589974931.png?downsize=50:*&output-quality=80" alt="Mixer Juicer Grinder Price List" title="Mixer Juicer Grinder Price List"
+                        /> </div>
+                    <div class="_ctlcn _lc">Mixer Juicer Grinder</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="" title="UPS Price List">
+                    <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/201902/ups_1550488457.png?downsize=50:*&output-quality=80" alt="UPS Price List" title="UPS Price List" /> </div>
+                    <div class="_ctlcn _lc">UPS</div>
+                </a>
+            </div>
+            <div class="_ctlcb">
+                <a target="_self" href="" title="Vacuum Cleaners Price List">
+                    <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/vacuum-cleaners-50x50_1589974964.png?downsize=50:*&output-quality=80" alt="Vacuum Cleaners Price List" title="Vacuum Cleaners Price List" /> </div>
+                    <div
+                        class="_ctlcn _lc">Vacuum Cleaners</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Emergency Lights Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/201902/emergency-lights_1550488198.png?downsize=50:*&output-quality=80" alt="Emergency Lights Price List" title="Emergency Lights Price List" /> </div>
+                <div class="_ctlcn _lc">Emergency Lights</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Voltage Stabilizers Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/voltage-stabilizers-50x50_1589974980.png?downsize=50:*&output-quality=80" alt="Voltage Stabilizers Price List" title="Voltage Stabilizers Price List" />                    </div>
+                <div class="_ctlcn _lc">Voltage Stabilizers</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Digital Thermometers Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/Digital-Thermometers-50x50_1592921304.png?downsize=50:*&output-quality=80" alt="Digital Thermometers Price List" title="Digital Thermometers Price List"
+                    /> </div>
+                <div class="_ctlcn _lc">Digital Thermometers</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Microwave Ovens Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202008/Microwave-Oven_1598008135.png?downsize=50:*&output-quality=80" alt="Microwave Ovens Price List" title="Microwave Ovens Price List" /> </div>
+                <div class="_ctlcn _lc">Microwave Ovens</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Oven Toaster Grills Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202009/Microwave-Oven_1599653659.png?downsize=50:*&output-quality=80" alt="Oven Toaster Grills Price List" title="Oven Toaster Grills Price List" /> </div>
+                <div
+                    class="_ctlcn _lc">Oven Toaster Grills</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Sewing Machines Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/201902/sewing-machine_1550488414.png?downsize=50:*&output-quality=80" alt="Sewing Machines Price List" title="Sewing Machines Price List" /> </div>
+            <div class="_ctlcn _lc">Sewing Machines</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Room Heaters Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202005/room-heaters-50x50_1589974947.png?downsize=50:*&output-quality=80" alt="Room Heaters Price List" title="Room Heaters Price List" /> </div>
+            <div class="_ctlcn _lc">Room Heaters</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Surveillance Cameras Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/Surveillance-Cameras-50x50_1593076488.png?downsize=50:*&output-quality=80" alt="Surveillance Cameras Price List" title="Surveillance Cameras Price List" /> </div>
+            <div class="_ctlcn _lc">Surveillance Cameras</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Glucometers Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/Glucometers-50x50_1593449438.png?downsize=50:*&output-quality=80" alt="Glucometers Price List" title="Glucometers Price List" /> </div>
+            <div class="_ctlcn _lc">Glucometers</div>
+        </a>
+    </div>
+
+</div>
+</div>
+<div class="_ctl">
+    <div class="_flx _wfltwp">
+        <h3 class="_chd">Essentials</h3>
+    </div>
+    <div class="_flx _ctlwp _ct">
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Shampoo Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/Shampoo_1592393909.png?downsize=50:*&output-quality=80" alt="Shampoo Price List" title="Shampoo Price List" /> </div>
+                <div class="_ctlcn _lc">Shampoo</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Hand Wash Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/Hand-Wash_1592393891.png?downsize=50:*&output-quality=80" alt="Hand Wash Price List" title="Hand Wash Price List" /> </div>
+                <div class="_ctlcn _lc">Hand Wash</div>
+            </a>
+        </div>
+        <div class="_ctlcb">
+            <a target="_self" href="" title="Body and Skin Care Price List">
+                <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/Body-and-Skin-Care_1592393832.png?downsize=50:*&output-quality=80" alt="Body and Skin Care Price List" title="Body and Skin Care Price List" /> </div>
+                <div
+                    class="_ctlcn _lc">Body and Skin Care</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Basmati Rice Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/basmati-rice-90x90_1593168111.jpg?downsize=50:*&output-quality=80" alt="Basmati Rice Price List" title="Basmati Rice Price List" /> </div>
+            <div class="_ctlcn _lc">Basmati Rice</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Brown Rice Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/brown-rice-90x90_1593167944.jpg?downsize=50:*&output-quality=80" alt="Brown Rice Price List" title="Brown Rice Price List" /> </div>
+            <div class="_ctlcn _lc">Brown Rice</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Coffee Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/coffee-90x90_1593167783.jpg?downsize=50:*&output-quality=80" alt="Coffee Price List" title="Coffee Price List" /> </div>
+            <div class="_ctlcn _lc">Coffee</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Green Tea Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/green-tea-90x90_1593167671.jpg?downsize=50:*&output-quality=80" alt="Green Tea Price List" title="Green Tea Price List" /> </div>
+            <div class="_ctlcn _lc">Green Tea</div>
+        </a>
+    </div>
+    <div class="_ctlcb">
+        <a target="_self" href="" title="Herbal Tea Price List">
+            <div class="thumb _flx"> <img class="" src="https://assets.gadgets360cdn.com/pricee/assets/category/202006/herbal-tea-90x90_1593167643.jpg?downsize=50:*&output-quality=80" alt="Herbal Tea Price List" title="Herbal Tea Price List" /> </div>
+            <div class="_ctlcn _lc">Herbal Tea</div>
+        </a>
+    </div>
+</div>
+</div>
+
+        </div>
+        <div class="swiper-button-next swiper-button-black"></div>
+        <div class="swiper-button-prev swiper-button-black"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+</div>
+    
+<script>
+myFunction():
+   function myFunction()
+      { 
+        alert("login successful");
+      }
+      </script>
+
+</body>
+
+</html>
